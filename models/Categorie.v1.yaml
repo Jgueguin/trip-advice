@@ -1,0 +1,7 @@
+title: Categorie
+type: object
+x-examples:
+  example-1: {}
+properties:
+  nom:
+    type: string

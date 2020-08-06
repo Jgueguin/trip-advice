@@ -1,0 +1,11 @@
+title: Activite
+type: object
+properties:
+  nomAct:
+    type: string
+  categories:
+    type: array
+    items:
+      $ref: ./Categorie.v1.yaml
+  evenements:
+    $ref: ./Evenement.v1.yaml

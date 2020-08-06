@@ -1,0 +1,394 @@
+openapi: 3.0.0
+info:
+  title: API - TripAdvice
+  version: '1.0'
+  description: API Trip Advice
+  contact:
+    name: jybl
+    url: jybl
+    email: jybl
+  termsOfService: jybl
+  license:
+    name: jybl
+    url: jybl
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /users:
+    post:
+      summary: ''
+      operationId: post-users
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value:
+                    - nom: Skinn
+                      prenom: Sherman
+                      email: sskinn0@altervista.org
+                      motDePasse: hzkWqlFJ
+                      adresse: 3705 Rowland Center
+                      numeroTelephone: '1238982247'
+                      numeroCarteBancaire: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/User.v1.yaml
+            examples:
+              example-1:
+                value:
+                  nom: Skinn
+                  prenom: Sherman
+                  email: sskinn0@altervista.org
+                  motDePasse: hzkWqlFJ
+                  adresse: 3705 Rowland Center
+                  numeroTelephone: '1238982247'
+                  numeroCarteBancaire: 1
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      description: creation compte user
+    put:
+      summary: ''
+      operationId: put-users
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/User.v1.yaml
+      description: modification compte user
+    get:
+      summary: ''
+      operationId: get-users
+      responses:
+        '200':
+          description: OK
+      parameters: []
+      description: consultation compte user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/User.v1.yaml
+            examples:
+              example-1:
+                value:
+                  email: jwheway0@sohu.com
+                  motDepasse: wtgD3BZ
+  /voyage:
+    post:
+      summary: ''
+      operationId: post-voyage
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Voyage.v1.yaml
+            examples:
+              example-1:
+                value:
+                  dateDepart: 08/09/2019
+                  dateFin: 12/07/2020
+                  lieuDepart: Tangwang
+                  lieuFin: Icononzo
+                  nombreVoyageur: 1
+                  tarifVoyage: 19
+                  vehicule: false
+                  vol: true
+      description: mise en place du voyage
+    delete:
+      summary: ''
+      operationId: delete-voyage
+      responses:
+        '200':
+          description: OK
+      description: suprresiion voyage
+    get:
+      summary: ''
+      operationId: get-voyage
+      responses:
+        '201':
+          description: Created
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: dateDepart
+        - schema:
+            type: string
+          in: query
+          name: dateFin
+        - schema:
+            type: string
+          in: query
+          name: lieuDepart
+        - schema:
+            type: string
+          in: query
+          name: lieuFin
+        - schema:
+            type: number
+          in: query
+          name: nombreVoyageur
+        - schema:
+            type: number
+          in: query
+          name: tarifVoyage
+        - schema:
+            type: boolean
+          in: query
+          name: vehicule
+        - schema:
+            type: boolean
+          in: query
+          name: vol
+      description: consultation voyage
+  /voyage/journee:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-journee
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: lieuJour
+        - schema:
+            type: string
+          in: query
+          name: dateJour
+      description: consultation d'une journée
+    post:
+      summary: ''
+      operationId: post-journee
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Journee.v1.yaml
+            examples:
+              example-1:
+                value:
+                  lieuJour: Aveiro
+                  dateJour: 5/8/2020
+      description: mise en place d'une journée
+    parameters: []
+  /voyage/prestation/vehicule:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-voyage-prestation
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: typeVehicule
+        - schema:
+            type: string
+          in: query
+          name: dureeLoc
+      description: consultation d'une prestation
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-voyage-prestation-vehicule
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Vehicule.v1.yaml
+            examples:
+              example-1:
+                value:
+                  typeVehicule: "\uFEFF"
+                  dureeLoc: '2:37 PM'
+      description: creation prestation
+    delete:
+      summary: ''
+      operationId: delete-voyage-prestation-vehicule
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Vehicule.v1.yaml
+        description: ''
+      description: suppression vehicule
+  /voyage/prestation/hotel:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-voyage-prestation-hotel
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: typeChambre
+        - schema:
+            type: string
+          in: query
+          name: nombreNuitee
+      description: consultation hotel
+    post:
+      summary: ''
+      operationId: post-voyage-prestation-hotel
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Hotel.v1.yaml
+            examples:
+              example-1:
+                value:
+                  typeChambre: ''''
+                  nombreNuitee: '8:34 AM'
+        description: ''
+      description: mise en place hotel
+    delete:
+      summary: ''
+      operationId: delete-voyage-prestation-hotel
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Hotel.v1.yaml
+      description: suppression hotel
+  /voyage/prestation/vol:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-voyage-prestation-vol
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: numeroVol
+        - schema:
+            type: number
+          in: query
+          name: nombreSiege
+      description: consultation vol
+    post:
+      summary: ''
+      operationId: post-voyage-prestation-vol
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Vol.v1.yaml
+            examples:
+              example-1:
+                value:
+                  numeroVol: 1
+                  nombreSiege: 1
+      description: mise en place vol
+    delete:
+      summary: ''
+      operationId: delete-voyage-prestation-vol
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Vol.v1.yaml
+      description: suppression vol
+  /voyage/journee/evenement/activite:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-voyage-journee-evenement-activite
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: nomAct
+        - schema:
+            type: number
+          in: query
+          name: categories
+      description: consultation activité
+    post:
+      summary: ''
+      operationId: post-voyage-journee-evenement-activite
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Activite.v1.yaml
+            examples:
+              example-1:
+                value:
+                  nomAct: Botrychium lunaria (L.) Sw.
+                  categorie:
+                    - {}
+                    - {}
+                    - {}
+                    - {}
+      description: mise en place activité
+    delete:
+      summary: ''
+      operationId: delete-voyage-journee-evenement-activite
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Activite.v1.yaml
+        description: ''
+      description: suppression activité
+components:
+  schemas: {}

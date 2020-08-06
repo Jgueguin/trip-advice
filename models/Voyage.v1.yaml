@@ -1,0 +1,20 @@
+title: Voyage
+type: object
+description: ''
+properties:
+  dateDepart:
+    type: string
+  dateFin:
+    type: string
+  lieuDepart:
+    type: string
+  lieuFin:
+    type: string
+  nombreVoyageur:
+    type: number
+  tarifVoyage:
+    type: number
+  vol:
+    type: boolean
+  vehicule:
+    type: boolean

@@ -1,0 +1,12 @@
+title: Vehicule
+type: object
+x-examples:
+  example-1: {}
+description: ''
+properties:
+  typeVehicule:
+    type: string
+  dureeLoc:
+    type: number
+  prestations:
+    $ref: ./Prestation.v1.yaml

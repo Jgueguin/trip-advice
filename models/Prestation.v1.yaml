@@ -1,0 +1,15 @@
+title: Prestation
+type: object
+properties:
+  tarifPresta:
+    type: number
+  jourDebut:
+    type: string
+  lieuPresta:
+    type: string
+  prestataire:
+    type: string
+  etatPrestas:
+    type: array
+    items:
+      $ref: ./EtatPrestatire.v1.yaml

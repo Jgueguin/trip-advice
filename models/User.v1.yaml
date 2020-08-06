@@ -1,0 +1,19 @@
+title: User
+type: object
+properties:
+  numeroClient:
+    type: number
+  nom:
+    type: string
+  prenom:
+    type: string
+  email:
+    type: string
+  motDePasse:
+    type: string
+  adresse:
+    type: string
+  numeroTelephone:
+    type: number
+  numeroCarteBancaire:
+    type: number

@@ -1,0 +1,6 @@
+title: EtatPrestatire
+type: object
+description: ''
+properties:
+  nom:
+    type: string

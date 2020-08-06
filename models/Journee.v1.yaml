@@ -1,0 +1,7 @@
+title: Journee
+type: object
+properties:
+  lieuJour:
+    type: string
+  dateJour:
+    type: string

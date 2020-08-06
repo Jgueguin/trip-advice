@@ -1,0 +1,7 @@
+title: Evenement
+type: object
+properties:
+  nomEv:
+    type: string
+  prestations:
+    $ref: ./Prestation.v1.yaml

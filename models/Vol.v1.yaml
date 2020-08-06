@@ -1,0 +1,9 @@
+title: Vol
+type: object
+properties:
+  numeroVol:
+    type: number
+  nombreSiege:
+    type: number
+  prestations:
+    $ref: ./Prestation.v1.yaml

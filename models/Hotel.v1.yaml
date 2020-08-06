@@ -1,0 +1,9 @@
+title: Hotel
+type: object
+properties:
+  typeChambre:
+    type: string
+  nombreNuitee:
+    type: number
+  prestations:
+    $ref: ./Prestation.v1.yaml

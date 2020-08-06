@@ -17,3 +17,13 @@ properties:
     type: number
   numeroCarteBancaire:
     type: number
+x-examples:
+  example-1:
+    numeroClient: 0
+    nom: string
+    prenom: string
+    email: string
+    motDePasse: string
+    adresse: string
+    numeroTelephone: 0
+    numeroCarteBancaire: 0

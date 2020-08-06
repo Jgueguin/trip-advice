@@ -7,3 +7,14 @@ properties:
     type: number
   prestations:
     $ref: ./Prestation.v1.yaml
+x-examples:
+  example-1:
+    numeroVol: 0
+    nombreSiege: 0
+    prestations:
+      tarifPresta: 0
+      jourDebut: string
+      lieuPresta: string
+      prestataire: string
+      etatPrestas:
+        - nom: string

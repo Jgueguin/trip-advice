@@ -4,3 +4,6 @@ description: ''
 properties:
   nom:
     type: string
+x-examples:
+  example-2:
+    nom: string

@@ -13,3 +13,11 @@ properties:
     type: array
     items:
       $ref: ./EtatPrestatire.v1.yaml
+x-examples:
+  example-3:
+    tarifPresta: 0
+    jourDebut: string
+    lieuPresta: string
+    prestataire: string
+    etatPrestas:
+      - nom: string

@@ -2,6 +2,9 @@ title: Categorie
 type: object
 x-examples:
   example-1: {}
+  example-2:
+    nom: string
 properties:
   nom:
     type: string
+description: Categorie

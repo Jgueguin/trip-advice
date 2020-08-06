@@ -76,7 +76,7 @@ paths:
         '200':
           description: OK
       parameters: []
-      description: consultation compte user
+      description: consultation des comptes users
       requestBody:
         content:
           application/json:
@@ -87,77 +87,6 @@ paths:
                 value:
                   email: jwheway0@sohu.com
                   motDepasse: wtgD3BZ
-  /voyage:
-    post:
-      summary: ''
-      operationId: post-voyage
-      responses:
-        '200':
-          description: OK
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../models/Voyage.v1.yaml
-            examples:
-              example-1:
-                value:
-                  dateDepart: 08/09/2019
-                  dateFin: 12/07/2020
-                  lieuDepart: Tangwang
-                  lieuFin: Icononzo
-                  nombreVoyageur: 1
-                  tarifVoyage: 19
-                  vehicule: false
-                  vol: true
-      description: mise en place du voyage
-    delete:
-      summary: ''
-      operationId: delete-voyage
-      responses:
-        '200':
-          description: OK
-      description: suprresiion voyage
-    get:
-      summary: ''
-      operationId: get-voyage
-      responses:
-        '201':
-          description: Created
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: dateDepart
-        - schema:
-            type: string
-          in: query
-          name: dateFin
-        - schema:
-            type: string
-          in: query
-          name: lieuDepart
-        - schema:
-            type: string
-          in: query
-          name: lieuFin
-        - schema:
-            type: number
-          in: query
-          name: nombreVoyageur
-        - schema:
-            type: number
-          in: query
-          name: tarifVoyage
-        - schema:
-            type: boolean
-          in: query
-          name: vehicule
-        - schema:
-            type: boolean
-          in: query
-          name: vol
-      description: consultation voyage
   /voyage/journee:
     get:
       summary: Your GET endpoint
@@ -166,16 +95,18 @@ paths:
         '200':
           description: OK
       operationId: get-journee
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: lieuJour
-        - schema:
-            type: string
-          in: query
-          name: dateJour
-      description: consultation d'une journée
+      parameters: []
+      description: consultation des journées
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Journee.v1.yaml
+            examples:
+              example-1:
+                value:
+                  lieuJour: string
+                  dateJour: string
     post:
       summary: ''
       operationId: post-journee
@@ -201,17 +132,25 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Vehicule.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    typeVehicule: string
+                    dureeLoc: 0
+                    prestations:
+                      tarifPresta: 0
+                      jourDebut: string
+                      lieuPresta: string
+                      prestataire: string
+                      etatPrestas:
+                        - nom: string
       operationId: get-voyage-prestation
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: typeVehicule
-        - schema:
-            type: string
-          in: query
-          name: dureeLoc
-      description: consultation d'une prestation
+      parameters: []
+      description: consultation de la iste des véhicules
     parameters: []
     post:
       summary: ''
@@ -227,21 +166,15 @@ paths:
             examples:
               example-1:
                 value:
-                  typeVehicule: "\uFEFF"
-                  dureeLoc: '2:37 PM'
-      description: creation prestation
+                  typeVehicule: "peugeot\uFEFF"
+                  dureeLoc: '3'
+      description: choix du véhicule
     delete:
       summary: ''
       operationId: delete-voyage-prestation-vehicule
       responses:
         '200':
           description: OK
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../models/Vehicule.v1.yaml
-        description: ''
       description: suppression vehicule
   /voyage/prestation/hotel:
     get:
@@ -260,7 +193,7 @@ paths:
             type: string
           in: query
           name: nombreNuitee
-      description: consultation hotel
+      description: consultation liste d'hotel
     post:
       summary: ''
       operationId: post-voyage-prestation-hotel
@@ -278,18 +211,13 @@ paths:
                   typeChambre: ''''
                   nombreNuitee: '8:34 AM'
         description: ''
-      description: mise en place hotel
+      description: choix hotel
     delete:
       summary: ''
       operationId: delete-voyage-prestation-hotel
       responses:
         '200':
           description: OK
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../models/Hotel.v1.yaml
       description: suppression hotel
   /voyage/prestation/vol:
     get:
@@ -325,18 +253,13 @@ paths:
                 value:
                   numeroVol: 1
                   nombreSiege: 1
-      description: mise en place vol
+      description: choix du vol
     delete:
       summary: ''
       operationId: delete-voyage-prestation-vol
       responses:
         '200':
           description: OK
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../models/Vol.v1.yaml
       description: suppression vol
   /voyage/journee/evenement/activite:
     get:
@@ -355,7 +278,7 @@ paths:
             type: number
           in: query
           name: categories
-      description: consultation activité
+      description: consultation liste d'activité
     post:
       summary: ''
       operationId: post-voyage-journee-evenement-activite
@@ -376,10 +299,19 @@ paths:
                     - {}
                     - {}
                     - {}
-      description: mise en place activité
+      description: creation activité
     delete:
       summary: ''
       operationId: delete-voyage-journee-evenement-activite
+      responses:
+        '200':
+          description: OK
+      description: suppression activité
+  /actions/users/login:
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-actions-users-login
       responses:
         '200':
           description: OK
@@ -387,8 +319,715 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../models/Activite.v1.yaml
-        description: ''
-      description: suppression activité
+              $ref: ../models/User.v1.yaml
+            examples:
+              example-1:
+                value:
+                  email: jwheway0@sohu.com
+                  motDepasse: wtgD3BZ
+      description: Login user
+  /voyage:
+    post:
+      summary: ''
+      operationId: post-actions-users-creerVoyage
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Voyage.v1.yaml
+            examples:
+              example-1:
+                value:
+                  identifiant: '8848484'
+                  dateDepart: 08/09/2019
+                  dateFin: 12/07/2020
+                  lieuDepart: Tangwang
+                  lieuFin: Icononzo
+                  nombreVoyageur: 1
+                  tarifVoyage: 19
+                  vehicule: false
+                  vol: true
+      description: creation voyage
+    parameters: []
+    put:
+      summary: ''
+      operationId: put-voyage
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Voyage.v1.yaml
+            examples:
+              example-1:
+                value:
+                  dateDepart: string
+                  dateFin: string
+                  lieuDepart: string
+                  lieuFin: string
+                  nombreVoyageur: 0
+                  tarifVoyage: 0
+                  vol: true
+                  vehicule: true
+                  identifiant: 0
+        description: modification voyage
+      description: Modification données voyage
+    get:
+      summary: ''
+      operationId: get-voyage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Voyage.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    dateDepart: string
+                    dateFin: string
+                    lieuDepart: string
+                    lieuFin: string
+                    nombreVoyageur: 0
+                    tarifVoyage: 0
+                    vol: true
+                    vehicule: true
+                    identifiant: 0
+      description: liste de tous les voyages
+    delete:
+      summary: ''
+      operationId: delete-voyage
+      responses:
+        '200':
+          description: suppression OK
+      description: suppression du voyage
+  '/actions/users/{numeroclient}':
+    parameters:
+      - schema:
+          type: string
+        name: numeroclient
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/User.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    numeroClient: 0
+                    nom: string
+                    prenom: string
+                    email: string
+                    motDePasse: string
+                    adresse: string
+                    numeroTelephone: 0
+                    numeroCarteBancaire: 0
+      operationId: get-users-id
+      parameters: []
+      description: consultation d'un client donné
+    put:
+      summary: ''
+      operationId: put-actions-users-numeroclient
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/User.v1.yaml
+            examples:
+              example-1:
+                value:
+                  numeroClient: 0
+                  nom: string
+                  prenom: string
+                  email: string
+                  motDePasse: string
+                  adresse: string
+                  numeroTelephone: 0
+                  numeroCarteBancaire: 0
+      description: Modification des données pour 1 client donné
+  '/actions/users/logout/{numeroclient}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: Logout OK
+      operationId: get-actions-users-logout
+      description: Logout
+    parameters:
+      - schema:
+          type: string
+        name: numeroclient
+        in: path
+        required: true
+  '/actions/voyage/{identifiant}':
+    parameters:
+      - schema:
+          type: string
+        name: identifiant
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Resumee.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    voyages:
+                      dateDepart: string
+                      dateFin: string
+                      lieuDepart: string
+                      lieuFin: string
+                      nombreVoyageur: 0
+                      tarifVoyage: 0
+                      vol: true
+                      vehicule: true
+                      identifiant: 0
+                    journees:
+                      - lieuJour: string
+                        dateJour: string
+                    activites:
+                      - nomAct: string
+                        categories:
+                          - nom: string
+                        evenements:
+                          nomEv: string
+                          prestations:
+                            tarifPresta: 0
+                            jourDebut: string
+                            lieuPresta: string
+                            prestataire: string
+                            etatPrestas:
+                              - nom: string
+                    vehicules:
+                      typeVehicule: string
+                      dureeLoc: 0
+                      prestations:
+                        tarifPresta: 0
+                        jourDebut: string
+                        lieuPresta: string
+                        prestataire: string
+                        etatPrestas:
+                          - nom: string
+                    hotels:
+                      - typeChambre: string
+                        nombreNuitee: 0
+                        prestations:
+                          tarifPresta: 0
+                          jourDebut: string
+                          lieuPresta: string
+                          prestataire: string
+                          etatPrestas:
+                            - nom: string
+                    vols:
+                      numeroVol: 0
+                      nombreSiege: 0
+                      prestations:
+                        tarifPresta: 0
+                        jourDebut: string
+                        lieuPresta: string
+                        prestataire: string
+                        etatPrestas:
+                          - nom: string
+      operationId: get-actions-voyage-vol-identifiant
+      description: consultation d'un voyage donné avec tout ses détails
+    post:
+      summary: ''
+      operationId: post-actions-voyage-identifiant
+      responses:
+        '200':
+          description: OK
+      description: envoi de notre choix de voyage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Resumee.v1.yaml
+            examples:
+              example-1:
+                value:
+                  voyages:
+                    dateDepart: string
+                    dateFin: string
+                    lieuDepart: string
+                    lieuFin: string
+                    nombreVoyageur: 0
+                    tarifVoyage: 0
+                    vol: true
+                    vehicule: true
+                    identifiant: 0
+                  journees:
+                    - lieuJour: string
+                      dateJour: string
+                  activites:
+                    - nomAct: string
+                      categories:
+                        - nom: string
+                      evenements:
+                        nomEv: string
+                        prestations:
+                          tarifPresta: 0
+                          jourDebut: string
+                          lieuPresta: string
+                          prestataire: string
+                          etatPrestas:
+                            - nom: string
+                  vehicules:
+                    typeVehicule: string
+                    dureeLoc: 0
+                    prestations:
+                      tarifPresta: 0
+                      jourDebut: string
+                      lieuPresta: string
+                      prestataire: string
+                      etatPrestas:
+                        - nom: string
+                  hotels:
+                    - typeChambre: string
+                      nombreNuitee: 0
+                      prestations:
+                        tarifPresta: 0
+                        jourDebut: string
+                        lieuPresta: string
+                        prestataire: string
+                        etatPrestas:
+                          - nom: string
+                  vols:
+                    numeroVol: 0
+                    nombreSiege: 0
+                    prestations:
+                      tarifPresta: 0
+                      jourDebut: string
+                      lieuPresta: string
+                      prestataire: string
+                      etatPrestas:
+                        - nom: string
+    delete:
+      summary: ''
+      operationId: delete-actions-voyage-identifiant
+      responses:
+        '200':
+          description: Voyage supprimé
+      description: suppression d'un voyage donné
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                '{identifiant}':
+                  type: number
+  '/action/voyage/{identifiant}/journée/{datejour}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Journee.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    lieuJour: string
+                    dateJour: string
+      operationId: get-action-voyage-journ-e
+      description: consultation d'une journée donnée
+    parameters:
+      - schema:
+          type: string
+        name: datejour
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: identifiant
+        in: path
+        required: true
+  '/actions/voyage/journee/{datejour}/evenement/{nomev}':
+    parameters:
+      - schema:
+          type: string
+        name: nomev
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: datejour
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Evenement.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    nomEv: string
+                    prestations:
+                      tarifPresta: 0
+                      jourDebut: string
+                      lieuPresta: string
+                      prestataire: string
+                      etatPrestas:
+                        - nom: string
+      operationId: get-actions-voyage-journee-evenement-nomev
+      description: consultation d'un évenement donné sur une date donnée
+  '/action/voyage/{identifiant}/journee/{datejour}/vehicule/{typevehicule}':
+    parameters:
+      - schema:
+          type: string
+        name: identifiant
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: datejour
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: typevehicule
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Vehicule.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    typeVehicule: string
+                    dureeLoc: 0
+                    prestations:
+                      tarifPresta: 0
+                      jourDebut: string
+                      lieuPresta: string
+                      prestataire: string
+                      etatPrestas:
+                        - nom: string
+      operationId: get-action-voyage-identifiant-journ-e-datejour-vehicule
+      description: consultation d'un type de véhicule donné sur une date donnée et un voyage donné
+  '/actions/voyage/{identifiant}/journee/{datejour}/vol/{numerovol}':
+    parameters:
+      - schema:
+          type: string
+        name: identifiant
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: datejour
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: numerovol
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Vol.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    numeroVol: 0
+                    nombreSiege: 0
+                    prestations:
+                      tarifPresta: 0
+                      jourDebut: string
+                      lieuPresta: string
+                      prestataire: string
+                      etatPrestas:
+                        - nom: string
+      operationId: get-actions-voyage-identifiant-journee-datejour-vol-numerovol
+      description: consultation d'un vol donné sur une date donnée et un voyage donné
+  '/actions/voyage/{identifiant}/journee/{datejour}/hotel/{typechambre}':
+    parameters:
+      - schema:
+          type: string
+        name: identifiant
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: datejour
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: typechambre
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Hotel.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    typeChambre: string
+                    nombreNuitee: 0
+                    prestations:
+                      tarifPresta: 0
+                      jourDebut: string
+                      lieuPresta: string
+                      prestataire: string
+                      etatPrestas:
+                        - nom: string
+      operationId: get-actions-voyage-identifiant-journee-datejour-hotel-typechambre
+      description: consultation d'une chambre d'hotel donnée sur date donnée et un voyage donné
+  '/actions/voyage/{identifiant}/journee/{datejour}/evenement/{nomev}/activite/{nomact}':
+    parameters:
+      - schema:
+          type: string
+        name: identifiant
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: datejour
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: nomev
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: nomact
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Activite.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    nomAct: string
+                    categories:
+                      - nom: string
+                    evenements:
+                      nomEv: string
+                      prestations:
+                        tarifPresta: 0
+                        jourDebut: string
+                        lieuPresta: string
+                        prestataire: string
+                        etatPrestas:
+                          - nom: string
+      operationId: get-actions-voyage-identifiant-journee-datejour-evenement-nomev-activite-nomact
+      description: consultation d'une activité donnée sur un evenement donné sur une date donnée et un voyage donné
+    delete:
+      summary: ''
+      operationId: delete-actions-voyage-identifiant-journee-datejour-evenement-nomev-activite-nomact
+      responses:
+        '200':
+          description: OK
+      description: Suppression d'une activité donnée par rapport à une date donnée
+  /actions/voyage/sauvegardervoyage:
+    post:
+      summary: ''
+      operationId: post-actions-voyage-sauvegardervoyage
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Resumee.v1.yaml
+            examples:
+              example-1:
+                value:
+                  voyages:
+                    dateDepart: string
+                    dateFin: string
+                    lieuDepart: string
+                    lieuFin: string
+                    nombreVoyageur: 0
+                    tarifVoyage: 0
+                    vol: true
+                    vehicule: true
+                    identifiant: 0
+                  journees:
+                    - lieuJour: string
+                      dateJour: string
+                  activites:
+                    - nomAct: string
+                      categories:
+                        - nom: string
+                      evenements:
+                        nomEv: string
+                        prestations:
+                          tarifPresta: 0
+                          jourDebut: string
+                          lieuPresta: string
+                          prestataire: string
+                          etatPrestas:
+                            - nom: string
+                  vehicules:
+                    typeVehicule: string
+                    dureeLoc: 0
+                    prestations:
+                      tarifPresta: 0
+                      jourDebut: string
+                      lieuPresta: string
+                      prestataire: string
+                      etatPrestas:
+                        - nom: string
+                  hotels:
+                    - typeChambre: string
+                      nombreNuitee: 0
+                      prestations:
+                        tarifPresta: 0
+                        jourDebut: string
+                        lieuPresta: string
+                        prestataire: string
+                        etatPrestas:
+                          - nom: string
+                  vols:
+                    numeroVol: 0
+                    nombreSiege: 0
+                    prestations:
+                      tarifPresta: 0
+                      jourDebut: string
+                      lieuPresta: string
+                      prestataire: string
+                      etatPrestas:
+                        - nom: string
+      description: Envoi informations du voyage vers le serveur
+  /actions/voyage/resumee:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Resumee.v1.yaml
+              examples:
+                example-1:
+                  value:
+                    - voyages:
+                        dateDepart: string
+                        dateFin: string
+                        lieuDepart: string
+                        lieuFin: string
+                        nombreVoyageur: 0
+                        tarifVoyage: 0
+                        vol: true
+                        vehicule: true
+                        identifiant: 0
+                      journees:
+                        - lieuJour: string
+                          dateJour: string
+                      activites:
+                        - nomAct: string
+                          categories:
+                            - nom: string
+                          evenements:
+                            nomEv: string
+                            prestations:
+                              tarifPresta: 0
+                              jourDebut: string
+                              lieuPresta: string
+                              prestataire: string
+                              etatPrestas:
+                                - nom: string
+                      vehicules:
+                        typeVehicule: string
+                        dureeLoc: 0
+                        prestations:
+                          tarifPresta: 0
+                          jourDebut: string
+                          lieuPresta: string
+                          prestataire: string
+                          etatPrestas:
+                            - nom: string
+                      hotels:
+                        - typeChambre: string
+                          nombreNuitee: 0
+                          prestations:
+                            tarifPresta: 0
+                            jourDebut: string
+                            lieuPresta: string
+                            prestataire: string
+                            etatPrestas:
+                              - nom: string
+                      vols:
+                        numeroVol: 0
+                        nombreSiege: 0
+                        prestations:
+                          tarifPresta: 0
+                          jourDebut: string
+                          lieuPresta: string
+                          prestataire: string
+                          etatPrestas:
+                            - nom: string
+      operationId: get-actions-voyage-resumee
+      description: liste de tous les voyages sauvegardés
 components:
   schemas: {}

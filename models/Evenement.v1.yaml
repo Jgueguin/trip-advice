@@ -5,3 +5,13 @@ properties:
     type: string
   prestations:
     $ref: ./Prestation.v1.yaml
+x-examples:
+  example-1:
+    nomEv: string
+    prestations:
+      tarifPresta: 0
+      jourDebut: string
+      lieuPresta: string
+      prestataire: string
+      etatPrestas:
+        - nom: string

@@ -3,3 +3,7 @@ type: object
 properties:
   identifiant:
     type: number
+x-examples:
+  example-1: {}
+  example-2:
+    identifiant: 0

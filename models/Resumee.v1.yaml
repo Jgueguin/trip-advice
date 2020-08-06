@@ -1,0 +1,80 @@
+title: Resumee
+type: object
+x-examples:
+  example-1:
+    voyages:
+      dateDepart: string
+      dateFin: string
+      lieuDepart: string
+      lieuFin: string
+      nombreVoyageur: 0
+      tarifVoyage: 0
+      vol: true
+      vehicule: true
+      identifiant: 0
+    journees:
+      - lieuJour: string
+        dateJour: string
+    activites:
+      - nomAct: string
+        categories:
+          - nom: string
+        evenements:
+          nomEv: string
+          prestations:
+            tarifPresta: 0
+            jourDebut: string
+            lieuPresta: string
+            prestataire: string
+            etatPrestas:
+              - nom: string
+    vehicules:
+      typeVehicule: string
+      dureeLoc: 0
+      prestations:
+        tarifPresta: 0
+        jourDebut: string
+        lieuPresta: string
+        prestataire: string
+        etatPrestas:
+          - nom: string
+    hotels:
+      - typeChambre: string
+        nombreNuitee: 0
+        prestations:
+          tarifPresta: 0
+          jourDebut: string
+          lieuPresta: string
+          prestataire: string
+          etatPrestas:
+            - nom: string
+    vols:
+      numeroVol: 0
+      nombreSiege: 0
+      prestations:
+        tarifPresta: 0
+        jourDebut: string
+        lieuPresta: string
+        prestataire: string
+        etatPrestas:
+          - nom: string
+description: résumé
+properties:
+  voyages:
+    $ref: ./Voyage.v1.yaml
+  journees:
+    type: array
+    items:
+      $ref: ./Journee.v1.yaml
+  activites:
+    type: array
+    items:
+      $ref: ./Activite.v1.yaml
+  vehicules:
+    $ref: ./Vehicule.v1.yaml
+  hotels:
+    type: array
+    items:
+      $ref: ./Hotel.v1.yaml
+  vols:
+    $ref: ./Vol.v1.yaml

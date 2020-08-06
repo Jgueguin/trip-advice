@@ -9,3 +9,19 @@ properties:
       $ref: ./Categorie.v1.yaml
   evenements:
     $ref: ./Evenement.v1.yaml
+x-examples:
+  example-1: {}
+  example-2:
+    nomAct: string
+    categories:
+      - nom: string
+    evenements:
+      nomEv: string
+      prestations:
+        tarifPresta: 0
+        jourDebut: string
+        lieuPresta: string
+        prestataire: string
+        etatPrestas:
+          - nom: string
+description: Activité

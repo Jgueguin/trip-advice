@@ -1,8 +1,17 @@
 title: Vehicule
 type: object
 x-examples:
-  example-1: {}
-description: ''
+  example-2:
+    typeVehicule: string
+    dureeLoc: 0
+    prestations:
+      tarifPresta: 0
+      jourDebut: string
+      lieuPresta: string
+      prestataire: string
+      etatPrestas:
+        - nom: string
+description: description véhicule
 properties:
   typeVehicule:
     type: string

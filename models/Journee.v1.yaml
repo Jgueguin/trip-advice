@@ -5,3 +5,7 @@ properties:
     type: string
   dateJour:
     type: string
+x-examples:
+  example-1:
+    lieuJour: string
+    dateJour: string
